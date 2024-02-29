@@ -123,20 +123,40 @@ function handleKeyPress(event) {
   ) {
     startGame();
   } else {
+    let newDirection;
     switch (event.key) {
       case "ArrowUp":
-        direction = "up";
+        newDirection = "up";
         break;
       case "ArrowDown":
-        direction = "down";
+        newDirection = "down";
         break;
       case "ArrowLeft":
-        direction = "left";
+        newDirection = "left";
         break;
       case "ArrowRight":
-        direction = "right";
+        newDirection = "right";
         break;
+      default:
+        return; // Ignore other keys
     }
+
+    // Allow direction change regardless of current direction if the snake length is 1
+    if (snake.length === 1) {
+      direction = newDirection;
+    }
+
+    // Check if the new direction is opposite to the current direction
+    if (
+      (newDirection === "up" && direction === "down") ||
+      (newDirection === "down" && direction === "up") ||
+      (newDirection === "left" && direction === "right") ||
+      (newDirection === "right" && direction === "left")
+    ) {
+      return; // Ignore opposite direction
+    }
+
+    direction = newDirection;
   }
 }
 
