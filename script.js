@@ -154,7 +154,7 @@ function handleKeyPress(event) {
       (newDirection === "right" && direction === "left")
     ) {
       return; // Ignore opposite direction
-    }a
+    }
 
     direction = newDirection;
   }
